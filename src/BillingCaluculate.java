@@ -125,7 +125,7 @@ class Keiyakusya {
 		count++;
 	}
 
-	public void calcKihonRyokin(){
+	public int calcKihonRyokin(){
 		kihonRyokin = KIHON_RYOKIN;
 		if(serviceKazokuwari){
 			kihonRyokin += KIHON_RYOKIN_SERVICE_KAZOKUWARI;
@@ -133,9 +133,10 @@ class Keiyakusya {
 		if(serviceHirutokuwari){
 			kihonRyokin += KIHON_RYOKIN_SERVICE_HIRUTOKUWARI;
 		}
+		return kihonRyokin;
 	}
 
-	public void calcTsuuwaRyokin(){
+	public int calcTsuuwaRyokin(){
 		for (int i = 0; i < tsuuwaIndex; i++){
 			taniRyokin = TANI_RYOKIN;
 			int minutes = Integer.parseInt(tsuuwa[i][2]);
@@ -171,6 +172,7 @@ class Keiyakusya {
 			}
 			tsuuwaRyokin += taniRyokin * minutes;
 		}
+		return tsuuwaRyokin;
 	}
 
 	// ここの多次元配列はイケてない。。。
