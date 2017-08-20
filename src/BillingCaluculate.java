@@ -188,6 +188,11 @@ class Keiyakusya {
 		return count;
 	}
 
+	//コンストラクタ内でインクリするのをやめようとしましたが、動きが変になり、このメソッドは一旦放置。
+	public static void setCount(int newCount){
+		count += newCount;
+	}
+
 	public void setKeiyakuNo(String newKeiyakuNo){
 		keiyakuNo = newKeiyakuNo;
 	}

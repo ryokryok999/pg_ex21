@@ -26,11 +26,10 @@ public class BillingCaluculateTest {
     // 基本料金テスト
     @Test //家族割引＆昼トク割引
     public void testCalcKihonryokinKazokuwariHirutokuwari() {
-    	Keiyakusya k[] = new Keiyakusya[1000];
-    	k[0] = new Keiyakusya();
-    	k[0].setServiceKazokuwari();
-    	k[0].setServiceHirutokuwari();
-    	assertEquals(1300, k[0].calcKihonRyokin());
+    	Keiyakusya k = new Keiyakusya();
+    	k.setServiceKazokuwari();
+    	k.setServiceHirutokuwari();
+    	assertEquals(1300, k.calcKihonRyokin());
     }
     @Test //家族割引のみ
     public void testCalcKihonryokinKazokuwari() {
