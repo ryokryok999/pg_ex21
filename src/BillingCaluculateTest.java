@@ -24,7 +24,7 @@ public class BillingCaluculateTest {
     }
 
     // 基本料金テスト
-    @Test
+    @Test //家族割引＆昼トク割引
     public void testCalcKihonryokinKazokuwariHirutokuwari() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -32,21 +32,21 @@ public class BillingCaluculateTest {
     	k[0].setServiceHirutokuwari();
     	assertEquals(1300, k[0].calcKihonRyokin());
     }
-    @Test
+    @Test //家族割引のみ
     public void testCalcKihonryokinKazokuwari() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
     	k[0].setServiceKazokuwari();
     	assertEquals(1100, k[0].calcKihonRyokin());
     }
-    @Test
+    @Test //昼トク割引のみ
     public void testCalcKihonryokinHirutokuwari() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
     	k[0].setServiceHirutokuwari();
     	assertEquals(1200, k[0].calcKihonRyokin());
     }
-    @Test
+    @Test //サービスなし　（メソッド名をxxxNoServiceにしたら動きがおかしかった？？）
     public void testCalcKihonryokinServiceNashi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -63,7 +63,7 @@ public class BillingCaluculateTest {
     }
 
     // 通話料金テスト　昼トク割引
-    @Test
+    @Test //時間内0:00
     public void testCalcTsuuwaRyokinHirrutokuwariJikangai0000() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -71,7 +71,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "00:00", "001", "000-000-0000");
     	assertEquals(20, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間外18:00
     public void testCalcTsuuwaRyokinHirrutokuwariJikangai1800() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -79,7 +79,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "18:00", "001", "000-000-0000");
     	assertEquals(20, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間内ギリギリ08:00
     public void testCalcTsuuwaRyokinHirrutokuwariJikannai0800() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -87,7 +87,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "08:00", "001", "000-000-0000");
     	assertEquals(15, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間内09:00
     public void testCalcTsuuwaRyokinHirrutokuwariJikannai0900() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -95,7 +95,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "09:00", "001", "000-000-0000");
     	assertEquals(15, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間内ギリギリ17:59
     public void testCalcTsuuwaRyokinHirrutokuwariJikannai1759() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -105,7 +105,7 @@ public class BillingCaluculateTest {
     }
 
     // 通話料金テスト　家族割引
-    @Test
+    @Test //番号一致
     public void testCalcTsuuwaRyokinKazokuwariNumberIcchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -114,7 +114,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "00:00", "001", "000-000-0000");
     	assertEquals(10, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //番号不一致
     public void testCalcTsuuwaRyokinKazokuwariNumberFuicchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -125,7 +125,7 @@ public class BillingCaluculateTest {
     }
 
     // 通話料金テスト　家族割引&昼トク割引
-    @Test
+    @Test //時間内、番号一致
     public void testCalcTsuuwaRyokinKazoHiruJikannaiNumberIcchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -135,7 +135,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "08:00", "001", "000-000-0000");
     	assertEquals(7, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間内、番号不一致
     public void testCalcTsuuwaRyokinKazoHiruJikannaiNumberFuicchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -145,7 +145,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "08:00", "001", "000-000-0000");
     	assertEquals(15, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間外、番号一致
     public void testCalcTsuuwaRyokinKazoHiruJikangaiNumberIcchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
@@ -155,7 +155,7 @@ public class BillingCaluculateTest {
        	k[0].setTsuuwa("2000/01/01", "00:00", "001", "000-000-0000");
     	assertEquals(10, k[0].calcTsuuwaRyokin());
     }
-    @Test
+    @Test //時間外、番号不一致
     public void testCalcTsuuwaRyokinKazoHiruJikangaiNumberFuicchi() {
     	Keiyakusya k[] = new Keiyakusya[1000];
     	k[0] = new Keiyakusya();
